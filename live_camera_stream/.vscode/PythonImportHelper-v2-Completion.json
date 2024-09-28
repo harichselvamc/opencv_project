@@ -1,0 +1,290 @@
+[
+    {
+        "label": "time",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "torch",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "torch",
+        "description": "torch",
+        "detail": "torch",
+        "documentation": {}
+    },
+    {
+        "label": "cv2",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "cv2",
+        "description": "cv2",
+        "detail": "cv2",
+        "documentation": {}
+    },
+    {
+        "label": "Flask",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "Response",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "Flask",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "Response",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "Flask",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "Response",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "numpy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "numpy",
+        "description": "numpy",
+        "detail": "numpy",
+        "documentation": {}
+    },
+    {
+        "label": "index",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def index():\n    \"\"\"Video streaming home page.\"\"\"\n    return render_template('index.html')\ndef detect_human_in_zone(img, zone_x, zone_y, zone_w, zone_h):\n    global human_entered\n    # Perform inference\n    results = model(img)\n    # Parse results\n    for detection in results.xyxy[0]:\n        x1, y1, x2, y2, conf, cls = detection",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "detect_human_in_zone",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def detect_human_in_zone(img, zone_x, zone_y, zone_w, zone_h):\n    global human_entered\n    # Perform inference\n    results = model(img)\n    # Parse results\n    for detection in results.xyxy[0]:\n        x1, y1, x2, y2, conf, cls = detection\n        label = model.names[int(cls)]\n        # Check if the detected object is a person and within the zone\n        if label == 'person':",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "gen",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def gen():\n    \"\"\"Video streaming generator function.\"\"\"\n    cap = cv2.VideoCapture(0)\n    # Define the square zone (top-left corner and size)\n    zone_x, zone_y = 100, 100\n    zone_w, zone_h = 500, 500\n    while cap.isOpened():\n        ret, img = cap.read()\n        if ret:\n            img = cv2.resize(img, (0, 0), fx=0.5, fy=0.5)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "video_feed",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def video_feed():\n    \"\"\"Video streaming route. Put this in the src attribute of an img tag.\"\"\"\n    return Response(gen(), mimetype='multipart/x-mixed-replace; boundary=frame')\nif __name__ == '__main__':\n    app.run(host='0.0.0.0', port=5000, debug=True)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app = Flask(__name__)\n# Load YOLOv5 model\nmodel = torch.hub.load('ultralytics/yolov5', 'yolov5s', pretrained=True)\n# Global variable to track human entry\nhuman_entered = False\n@app.route('/')\ndef index():\n    \"\"\"Video streaming home page.\"\"\"\n    return render_template('index.html')\ndef detect_human_in_zone(img, zone_x, zone_y, zone_w, zone_h):",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "model",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "model = torch.hub.load('ultralytics/yolov5', 'yolov5s', pretrained=True)\n# Global variable to track human entry\nhuman_entered = False\n@app.route('/')\ndef index():\n    \"\"\"Video streaming home page.\"\"\"\n    return render_template('index.html')\ndef detect_human_in_zone(img, zone_x, zone_y, zone_w, zone_h):\n    global human_entered\n    # Perform inference",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "human_entered",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "human_entered = False\n@app.route('/')\ndef index():\n    \"\"\"Video streaming home page.\"\"\"\n    return render_template('index.html')\ndef detect_human_in_zone(img, zone_x, zone_y, zone_w, zone_h):\n    global human_entered\n    # Perform inference\n    results = model(img)\n    # Parse results",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "cap",
+        "kind": 5,
+        "importPath": "hum_counter_v1",
+        "description": "hum_counter_v1",
+        "peekOfCode": "cap = cv2.VideoCapture(\"768x576.avi\")\nframes_count, fps, width, height = cap.get(cv2.CAP_PROP_FRAME_COUNT), cap.get(cv2.CAP_PROP_FPS), cap.get(\n    cv2.CAP_PROP_FRAME_WIDTH), cap.get(cv2.CAP_PROP_FRAME_HEIGHT)\nwidth = int(width)\nheight = int(height)\nprint(frames_count, fps, width, height)\nsub = cv2.createBackgroundSubtractorMOG2()  # create background subtractor\nret, frame = cap.read()  # import image\nratio = 1.0\nwhile True:",
+        "detail": "hum_counter_v1",
+        "documentation": {}
+    },
+    {
+        "label": "width",
+        "kind": 5,
+        "importPath": "hum_counter_v1",
+        "description": "hum_counter_v1",
+        "peekOfCode": "width = int(width)\nheight = int(height)\nprint(frames_count, fps, width, height)\nsub = cv2.createBackgroundSubtractorMOG2()  # create background subtractor\nret, frame = cap.read()  # import image\nratio = 1.0\nwhile True:\n    ret, frame = cap.read()  # import image\n    if not ret: #if vid finish repeat\n        frame = cv2.VideoCapture(\"768x576.avi\")",
+        "detail": "hum_counter_v1",
+        "documentation": {}
+    },
+    {
+        "label": "height",
+        "kind": 5,
+        "importPath": "hum_counter_v1",
+        "description": "hum_counter_v1",
+        "peekOfCode": "height = int(height)\nprint(frames_count, fps, width, height)\nsub = cv2.createBackgroundSubtractorMOG2()  # create background subtractor\nret, frame = cap.read()  # import image\nratio = 1.0\nwhile True:\n    ret, frame = cap.read()  # import image\n    if not ret: #if vid finish repeat\n        frame = cv2.VideoCapture(\"768x576.avi\")\n        continue",
+        "detail": "hum_counter_v1",
+        "documentation": {}
+    },
+    {
+        "label": "sub",
+        "kind": 5,
+        "importPath": "hum_counter_v1",
+        "description": "hum_counter_v1",
+        "peekOfCode": "sub = cv2.createBackgroundSubtractorMOG2()  # create background subtractor\nret, frame = cap.read()  # import image\nratio = 1.0\nwhile True:\n    ret, frame = cap.read()  # import image\n    if not ret: #if vid finish repeat\n        frame = cv2.VideoCapture(\"768x576.avi\")\n        continue\n    if ret:  # if there is a frame continue with code\n        image = cv2.resize(frame, (0, 0), None, ratio, ratio)  # resize image",
+        "detail": "hum_counter_v1",
+        "documentation": {}
+    },
+    {
+        "label": "ratio",
+        "kind": 5,
+        "importPath": "hum_counter_v1",
+        "description": "hum_counter_v1",
+        "peekOfCode": "ratio = 1.0\nwhile True:\n    ret, frame = cap.read()  # import image\n    if not ret: #if vid finish repeat\n        frame = cv2.VideoCapture(\"768x576.avi\")\n        continue\n    if ret:  # if there is a frame continue with code\n        image = cv2.resize(frame, (0, 0), None, ratio, ratio)  # resize image\n        gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)  # converts image to gray\n        fgmask = sub.apply(gray)  # uses the background subtraction",
+        "detail": "hum_counter_v1",
+        "documentation": {}
+    },
+    {
+        "label": "index",
+        "kind": 2,
+        "importPath": "stream_imag",
+        "description": "stream_imag",
+        "peekOfCode": "def index():\n    \"\"\"Video streaming home page.\"\"\"\n    return render_template('index.html')\ndef gen():\n    \"\"\"Video streaming generator function.\"\"\"\n    img = cv2.imread(\"lizerd.jpg\")\n    img = cv2.resize(img, (0,0), fx=0.5, fy=0.5) \n    frame = cv2.imencode('.jpg', img)[1].tobytes()\n    yield (b'--frame\\r\\n'b'Content-Type: image/jpeg\\r\\n\\r\\n' + frame + b'\\r\\n')\n@app.route('/video_feed')",
+        "detail": "stream_imag",
+        "documentation": {}
+    },
+    {
+        "label": "gen",
+        "kind": 2,
+        "importPath": "stream_imag",
+        "description": "stream_imag",
+        "peekOfCode": "def gen():\n    \"\"\"Video streaming generator function.\"\"\"\n    img = cv2.imread(\"lizerd.jpg\")\n    img = cv2.resize(img, (0,0), fx=0.5, fy=0.5) \n    frame = cv2.imencode('.jpg', img)[1].tobytes()\n    yield (b'--frame\\r\\n'b'Content-Type: image/jpeg\\r\\n\\r\\n' + frame + b'\\r\\n')\n@app.route('/video_feed')\ndef video_feed():\n    \"\"\"Video streaming route. Put this in the src attribute of an img tag.\"\"\"\n    return Response(gen(),",
+        "detail": "stream_imag",
+        "documentation": {}
+    },
+    {
+        "label": "video_feed",
+        "kind": 2,
+        "importPath": "stream_imag",
+        "description": "stream_imag",
+        "peekOfCode": "def video_feed():\n    \"\"\"Video streaming route. Put this in the src attribute of an img tag.\"\"\"\n    return Response(gen(),\n                    mimetype='multipart/x-mixed-replace; boundary=frame')",
+        "detail": "stream_imag",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "stream_imag",
+        "description": "stream_imag",
+        "peekOfCode": "app = Flask(__name__)\n@app.route('/')\ndef index():\n    \"\"\"Video streaming home page.\"\"\"\n    return render_template('index.html')\ndef gen():\n    \"\"\"Video streaming generator function.\"\"\"\n    img = cv2.imread(\"lizerd.jpg\")\n    img = cv2.resize(img, (0,0), fx=0.5, fy=0.5) \n    frame = cv2.imencode('.jpg', img)[1].tobytes()",
+        "detail": "stream_imag",
+        "documentation": {}
+    },
+    {
+        "label": "index",
+        "kind": 2,
+        "importPath": "stream_video",
+        "description": "stream_video",
+        "peekOfCode": "def index():\n    \"\"\"Video streaming home page.\"\"\"\n    return render_template('index.html')\ndef gen():\n    \"\"\"Video streaming generator function.\"\"\"\n    cap = cv2.VideoCapture(0)\n    # Read until video is completed\n    while(cap.isOpened()):\n      # Capture frame-by-frame\n        ret, img = cap.read()",
+        "detail": "stream_video",
+        "documentation": {}
+    },
+    {
+        "label": "gen",
+        "kind": 2,
+        "importPath": "stream_video",
+        "description": "stream_video",
+        "peekOfCode": "def gen():\n    \"\"\"Video streaming generator function.\"\"\"\n    cap = cv2.VideoCapture(0)\n    # Read until video is completed\n    while(cap.isOpened()):\n      # Capture frame-by-frame\n        ret, img = cap.read()\n        if ret == True:\n            img = cv2.resize(img, (0,0), fx=0.5, fy=0.5) \n            frame = cv2.imencode('.jpg', img)[1].tobytes()",
+        "detail": "stream_video",
+        "documentation": {}
+    },
+    {
+        "label": "video_feed",
+        "kind": 2,
+        "importPath": "stream_video",
+        "description": "stream_video",
+        "peekOfCode": "def video_feed():\n    \"\"\"Video streaming route. Put this in the src attribute of an img tag.\"\"\"\n    return Response(gen(),\n                    mimetype='multipart/x-mixed-replace; boundary=frame')",
+        "detail": "stream_video",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "stream_video",
+        "description": "stream_video",
+        "peekOfCode": "app = Flask(__name__)\n@app.route('/')\ndef index():\n    \"\"\"Video streaming home page.\"\"\"\n    return render_template('index.html')\ndef gen():\n    \"\"\"Video streaming generator function.\"\"\"\n    cap = cv2.VideoCapture(0)\n    # Read until video is completed\n    while(cap.isOpened()):",
+        "detail": "stream_video",
+        "documentation": {}
+    }
+]
